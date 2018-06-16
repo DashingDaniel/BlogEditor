@@ -1,0 +1,38 @@
+<% include ./partials/header.ejs %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">BlogPost editor</a>
+  
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/new">Add New<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="jumbotron">
+    <h1 class="display-3">Welcome to BlogPost editor</h1>
+    <p class="lead">This is a simple blogpost editor which performs CRUD operations on your posts saved in mongoDB</p>
+  </div>    
+    <% if(posts){ %>
+      <% posts.forEach((post)=>{ %>
+     <div class="container">
+        <div class="card">
+          <div class="card-body">
+          <h4 class="card-title"><%= post.title %></h4>
+          <p class="card-text"><%= post.description %></p>
+          <a href="/edit/<%= post._id %>" class="card-link">Edit Post</a>
+          <a href="/delete/<%= post._id %>" class="card-link">Delete Post</a>
+        </div>
+      </div>
+    </div>
+    <br>
+          <% }) %>
+          <% }else{ %>
+          <p>No posts yet</p>
+        <% } %>
+     
+<% include ./partials/footer.ejs %>
